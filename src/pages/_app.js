@@ -1,5 +1,7 @@
-import "@/styles/globals.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import MainLayout from "./layouts/mainLayout";
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  const getLayout = Component.getLayout || ((page) => <MainLayout>{page}</MainLayout>);
+  return <ChakraProvider>{getLayout(<Component {...pageProps} />)}</ChakraProvider>;
 }
